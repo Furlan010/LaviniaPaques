@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#12090c" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Uma experiência feita para Lavínia." />
+  <title>Lavínia — nossa história</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <canvas id="ambient" aria-hidden="true"></canvas>
+
+  <button class="music-control" id="musicControl" type="button" aria-label="Tocar nossa música">
+    <span class="music-dot"></span>
+    <span class="music-label">♪ nossa música</span>
+  </button>
+  <audio id="bgMusic" preload="none" loop src="nossa-musica.mp3"></audio>
+
+  <main>
+    <section class="screen intro-screen" id="intro" aria-labelledby="introTitle">
+      <div class="intro-copy">
+        <p class="eyebrow">uma coisa só sua</p>
+        <h1 id="introTitle">Lavínia.</h1>
+        <p class="intro-line" data-delay="1">fiz uma coisinha pra você.</p>
+        <p class="intro-line" data-delay="2">só tem um problema…</p>
+        <p class="intro-line" data-delay="3">você vai ter que descobrir como entrar.</p>
+        <button class="primary-btn" id="startBtn" type="button">tentar entrar</button>
+      </div>
+      <div class="intro-mark">2025 → agora</div>
+    </section>
+
+    <section class="screen gate-screen is-hidden" id="gate" aria-labelledby="gateTitle">
+      <div class="gate-shell">
+        <button class="ghost-back" id="backToIntro" type="button">← voltar</button>
+        <p class="eyebrow">acesso 01</p>
+        <h2 id="gateTitle">Primeiro, prova que é você.</h2>
+        <p class="muted">A senha é uma coisa que eu te chamo. Nada de data, nada de nome completo.</p>
+
+        <div class="password-card">
+          <div class="password-slots" id="passwordSlots" aria-hidden="true"></div>
+          <label class="field-label" for="passwordInput">digite aqui</label>
+          <div class="input-row">
+            <input id="passwordInput" class="text-input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="sua resposta" />
+            <button class="mini-btn" id="submitPassword" type="button">entrar</button>
+          </div>
+          <p class="feedback" id="passwordFeedback" aria-live="polite"></p>
+        </div>
+
+        <div class="hint-panel">
+          <div class="hint-head">
+            <span>dicas desbloqueadas</span>
+            <span id="hintCount">0/3</span>
+          </div>
+          <div class="hint-list" id="hintList"></div>
+          <button class="secondary-btn" id="hintBtn" type="button">me dá uma dica</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="experience" class="experience is-hidden">
+      <header class="progress-header">
+        <a href="#chapter1" class="brand-mini">L.</a>
+        <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
+        <div class="fragment-mini"><span id="fragmentCount">0</span>/4 fragmentos</div>
+      </header>
+
+      <section class="chapter chapter-opening" id="chapter1" data-chapter="1">
+        <div class="chapter-number">01</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">uma resposta</p>
+          <h2>Antes de tudo isso, teve um story.</h2>
+          <p>Antes da escola, antes do shopping, antes de virar rotina… teve uma mensagem que parecia pequena demais pra mudar tanta coisa.</p>
+        </div>
+
+        <div class="envelope-wrap" id="envelopeWrap">
+          <button class="envelope" id="openEnvelope" type="button" aria-label="Abrir carta">
+            <span class="envelope-back"></span>
+            <span class="envelope-letter">
+              <small>minha primeira carta</small>
+              <strong>abre aqui</strong>
+            </span>
+            <span class="envelope-flap"></span>
+            <span class="envelope-front"></span>
+          </button>
+          <p class="microcopy">toca no envelope</p>
+        </div>
+
+        <div class="reveal-panel is-hidden" id="chapter1Quiz">
+          <p class="question-kicker">pergunta 01</p>
+          <h3>O que eu elogiei naquele story?</h3>
+          <div class="choice-grid" data-question="hair">
+            <button class="choice" data-answer="sorriso" type="button">seu sorriso</button>
+            <button class="choice" data-answer="olhos" type="button">seus olhos</button>
+            <button class="choice" data-answer="cabelo" type="button">seu cabelo</button>
+            <button class="choice" data-answer="look" type="button">seu look</button>
+          </div>
+          <p class="feedback" id="hairFeedback" aria-live="polite"></p>
+        </div>
+
+        <div class="memory-reveal is-hidden" id="hairReveal">
+          <div class="story-lines">
+            <p>É muito doido pensar que tudo começou com eu respondendo um story seu.</p>
+            <p>Na hora era só um elogio. Hoje eu olho pra trás e penso: ainda bem que eu mandei aquela mensagem.</p>
+            <p>E sim… seu cabelo continua sendo uma das primeiras coisas que eu reparo em você.</p>
+          </div>
+          <div class="photo-ribbon" aria-label="Momentos nossos">
+            <figure><img src="02-azul.jpeg" alt="Lavínia e Gustavo em frente ao espelho" loading="lazy"><figcaption>o começo virou assunto pra todo dia</figcaption></figure>
+            <figure><img src="03-espelho.jpeg" alt="Lavínia e Gustavo juntos" loading="lazy"><figcaption>e sem perceber, virou nós</figcaption></figure>
+            <figure><img src="10-selfie-muro.jpeg" alt="Selfie de Lavínia e Gustavo" loading="lazy"><figcaption>algumas coisas só ficam melhores</figcaption></figure>
+          </div>
+          <div class="fragment-card" data-fragment="2">
+            <span>fragmento encontrado</span><strong>2</strong><small>01 / 04</small>
+          </div>
+          <a class="next-link" href="#chapter2">continuar ↓</a>
+        </div>
+      </section>
+
+      <section class="chapter chapter-shopping" id="chapter2" data-chapter="2">
+        <div class="chapter-number">02</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">primeira vez</p>
+          <h2>Te encontrar parecia um evento.</h2>
+          <p>Hoje parece normal te ver. Naquela época, só pensar em chegar perto de você já dava aquele nervoso ridículo.</p>
+        </div>
+
+        <div class="question-card">
+          <p class="question-kicker">pergunta 02</p>
+          <h3>Onde aconteceu nosso primeiro encontro?</h3>
+          <div class="choice-list" data-question="shopping">
+            <button class="choice" data-answer="parque" type="button">num parque</button>
+            <button class="choice" data-answer="shopping" type="button">no shopping</button>
+            <button class="choice" data-answer="escola" type="button">na escola</button>
+            <button class="choice" data-answer="casa" type="button">na casa de alguém</button>
+          </div>
+          <p class="feedback" id="shoppingFeedback" aria-live="polite"></p>
+        </div>
+
+        <div class="shopping-reveal is-hidden" id="shoppingReveal">
+          <div class="scrub-card">
+            <div class="scrub-copy">
+              <span>arrasta devagar</span>
+              <strong>pra lembrar</strong>
+            </div>
+            <div class="scrub-image-wrap">
+              <img src="06-shopping.jpeg" alt="Lavínia e Gustavo em uma loja" class="scrub-base" loading="lazy">
+              <div class="scrub-overlay" id="scrubOverlay"><img src="06-shopping.jpeg" alt="" loading="lazy"></div>
+              <div class="scrub-line" id="scrubLine"></div>
+            </div>
+            <input id="memoryScrub" class="scrub-range" type="range" min="0" max="100" value="14" aria-label="Revelar fotografia" />
+          </div>
+
+          <div class="story-lines">
+            <p>Eu lembro da gente tentando agir normal e falhando um pouco nisso.</p>
+            <p>Hoje eu gosto justamente dessa parte: pensar que um dia a gente ficou nervoso pra se ver e agora você faz parte do meu dia.</p>
+          </div>
+          <div class="fragment-card" data-fragment="0">
+            <span>fragmento encontrado</span><strong>0</strong><small>02 / 04</small>
+          </div>
+          <a class="next-link" href="#chapter3">próximo capítulo ↓</a>
+        </div>
+      </section>
+
+      <section class="chapter chapter-etec" id="chapter3" data-chapter="3">
+        <div class="chapter-number">03</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">a escolha</p>
+          <h2>Uma decisão de escola que mudou muito mais que a escola.</h2>
+          <p>Na época parecia só inscrição, resultado, chamada. Hoje eu sei o quanto aquilo aproximou a gente.</p>
+        </div>
+
+        <div class="result-terminal" id="resultTerminal">
+          <div class="terminal-top"><span>processo seletivo</span><span>ETEC</span></div>
+          <div class="terminal-body">
+            <p class="status-line"><span>inscrição</span><b>confirmada</b></p>
+            <p class="status-line"><span>resultado</span><b id="resultStatus">bloqueado</b></p>
+            <div class="result-display" id="resultDisplay">
+              <span class="result-small">posição final</span>
+              <strong>última chamada</strong>
+              <span class="result-small">toque para descobrir</span>
+            </div>
+            <button class="primary-btn compact" id="revealResult" type="button">ver resultado</button>
+          </div>
+        </div>
+
+        <div class="etec-reveal is-hidden" id="etecReveal">
+          <div class="approval">APROVADO</div>
+          <div class="story-lines">
+            <p>Eu só queria muito conseguir entrar.</p>
+            <p>Acabei entrando numa fase da minha vida que eu não trocaria por nada.</p>
+            <p>Passar na última chamada já parecia sorte demais. Depois eu entendi o melhor: eu ia poder te ver quase todo dia.</p>
+            <p>E foi aí que tudo deixou de parecer distante. A gente ficou mais perto, mais presente, mais sério. Muito rápido.</p>
+          </div>
+          <figure class="editorial-photo tall">
+            <img src="04-colo.jpeg" alt="Lavínia e Gustavo juntos em frente ao espelho" loading="lazy">
+            <figcaption>uma escolha pequena por fora. gigante pra mim.</figcaption>
+          </figure>
+          <div class="fragment-card" data-fragment="2">
+            <span>fragmento encontrado</span><strong>2</strong><small>03 / 04</small>
+          </div>
+          <a class="next-link" href="#timelineGame">agora quero ver se você lembra ↓</a>
+        </div>
+      </section>
+
+      <section class="chapter game-section" id="timelineGame" data-chapter="4">
+        <div class="chapter-number">04</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">fora de ordem</p>
+          <h2>Coloca a nossa história no lugar.</h2>
+          <p>Toque nos acontecimentos na ordem em que eles fizeram parte da nossa história.</p>
+        </div>
+        <div class="selection-track" id="selectionTrack" aria-live="polite"></div>
+        <div class="timeline-game" id="timelineChoices"></div>
+        <div class="game-actions">
+          <button class="secondary-btn" id="resetTimeline" type="button">embaralhar de novo</button>
+          <p class="feedback" id="timelineFeedback"></p>
+        </div>
+
+        <div class="timeline-success is-hidden" id="timelineSuccess">
+          <div class="clean-timeline">
+            <div><span>01</span><b>um story</b></div>
+            <div><span>02</span><b>as conversas</b></div>
+            <div><span>03</span><b>o shopping</b></div>
+            <div><span>04</span><b>a ETEC</b></div>
+            <div><span>05</span><b>todo dia</b></div>
+            <div><span>06</span><b>nós</b></div>
+          </div>
+          <div class="fragment-card" data-fragment="5">
+            <span>fragmento encontrado</span><strong>5</strong><small>04 / 04</small>
+          </div>
+          <p class="fragment-note">4 fragmentos. Guarda isso.</p>
+          <a class="next-link" href="#memoryGame">tem mais uma brincadeira ↓</a>
+        </div>
+      </section>
+
+      <section class="chapter memory-game-section" id="memoryGame" data-chapter="5">
+        <div class="chapter-number">05</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">memória</p>
+          <h2>Agora sem cola.</h2>
+          <p>Encontra os pares. São fotos nossas de verdade — nada de desenho bonitinho pra facilitar.</p>
+        </div>
+        <div class="memory-grid" id="memoryGrid" aria-label="Jogo da memória"></div>
+        <p class="feedback" id="memoryFeedback" aria-live="polite"></p>
+        <div class="memory-complete is-hidden" id="memoryComplete">
+          <p>Você terminou. E eu ainda acho engraçado como a gente consegue transformar foto em lembrança e dia comum em coisa que eu quero guardar.</p>
+          <a class="next-link" href="#gallery">agora vem a parte sem pressa ↓</a>
+        </div>
+      </section>
+
+      <section class="chapter gallery-section" id="gallery" data-chapter="6">
+        <div class="chapter-number">06</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">nossa história</p>
+          <h2>Tem foto que parece simples até virar lembrança.</h2>
+          <p>Eu não quis escolher só as “mais bonitas”. Quis colocar tudo que tem a nossa cara.</p>
+        </div>
+
+        <div class="editorial-grid" id="editorialGrid">
+          <button class="photo-card span-2" data-full="01-fullsize.jpeg" type="button"><img src="01-fullsize.jpeg" alt="Lavínia e Gustavo em frente ao espelho" loading="lazy"><span>mais um dia qualquer que ficou importante</span></button>
+          <button class="photo-card" data-full="02-azul.jpeg" type="button"><img src="02-azul.jpeg" alt="Lavínia e Gustavo juntos" loading="lazy"><span>a gente nem imaginava o tanto que ainda ia viver</span></button>
+          <button class="photo-card" data-full="03-espelho.jpeg" type="button"><img src="03-espelho.jpeg" alt="Lavínia e Gustavo em frente ao espelho" loading="lazy"><span>eu gosto até das fotos que a gente nem planejou</span></button>
+          <button class="photo-card tall-card" data-full="04-colo.jpeg" type="button"><img src="04-colo.jpeg" alt="Lavínia e Gustavo juntos" loading="lazy"><span>alguns momentos são muito a nossa cara</span></button>
+          <button class="photo-card" data-full="05-espelho-repetida.jpeg" type="button"><img src="05-espelho-repetida.jpeg" alt="Lavínia e Gustavo juntos" loading="lazy"><span>e eu quis guardar até os repetidos</span></button>
+          <button class="photo-card span-2" data-full="06-shopping.jpeg" type="button"><img src="06-shopping.jpeg" alt="Lavínia e Gustavo em uma loja" loading="lazy"><span>o shopping acabou virando parte da história</span></button>
+          <button class="photo-card" data-full="07-elevador.jpeg" type="button"><img src="07-elevador.jpeg" alt="Lavínia e Gustavo no elevador" loading="lazy"><span>um registro rápido e pronto: memória</span></button>
+          <button class="photo-card" data-full="08-abraco.jpeg" type="button"><img src="08-abraco.jpeg" alt="Lavínia e Gustavo abraçados" loading="lazy"><span>o tipo de foto que fala sem legenda</span></button>
+          <button class="photo-card span-2 landscape-feel" data-full="09-selfie-oculos.jpeg" type="button"><img src="09-selfie-oculos.jpeg" alt="Selfie de Lavínia e Gustavo" loading="lazy"><span>meu lugar favorito quase sempre tem você perto</span></button>
+          <button class="photo-card tall-card" data-full="10-selfie-muro.jpeg" type="button"><img src="10-selfie-muro.jpeg" alt="Selfie de Lavínia e Gustavo" loading="lazy"><span>e eu ainda quero encher isso aqui de foto nova</span></button>
+        </div>
+
+        <div class="quiet-question">
+          <p>quer saber a parte que eu mais gosto disso tudo?</p>
+          <button class="primary-btn" id="wantKnow" type="button">quero</button>
+        </div>
+      </section>
+
+      <section class="chapter vault-section is-hidden" id="vault" data-chapter="7">
+        <div class="chapter-number">07</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">última trava</p>
+          <h2>Você já encontrou a senha.</h2>
+          <p>Os quatro fragmentos estavam contando uma coisa desde o começo.</p>
+        </div>
+
+        <div class="fragment-row" id="fragmentRow">
+          <span>?</span><span>?</span><span>?</span><span>?</span>
+        </div>
+        <div class="vault-card">
+          <label for="vaultInput">código de 4 números</label>
+          <div class="input-row">
+            <input id="vaultInput" class="text-input vault-input" inputmode="numeric" maxlength="4" placeholder="••••" />
+            <button class="mini-btn" id="unlockVault" type="button">abrir</button>
+          </div>
+          <p class="feedback" id="vaultFeedback" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="chapter final-letter is-hidden" id="finalLetter" data-chapter="8">
+        <div class="final-photo parallax-photo">
+          <img src="09-selfie-oculos.jpeg" alt="Lavínia e Gustavo juntos" loading="lazy">
+          <div class="final-photo-overlay"></div>
+          <div class="final-photo-copy">
+            <span>pra você</span>
+            <h2>Agora sem jogo.</h2>
+          </div>
+        </div>
+
+        <article class="letter-copy">
+          <p>É muito doido pensar que um dia você era só a menina do story que eu resolvi responder.</p>
+          <p>Naquele momento eu não fazia ideia de que uma mensagem tão simples ia acabar trazendo tanta coisa depois.</p>
+          <p>Veio o shopping, o nervosismo, as conversas, a vontade de ficar perto. Depois veio a ETEC — e eu ainda acho absurdo pensar que passei justo na última chamada.</p>
+          <p>Foi aí que você deixou de ser alguém que eu queria ver e virou alguém que eu realmente via quase todo dia. E isso mudou tudo. A gente ficou mais próximo, mais presente e, quando eu percebi, já não era mais uma coisa “qualquer”. Era a gente de verdade.</p>
+          <p>Eu gosto de pensar que ainda tem muita coisa pela frente. Muito dia comum, muita foto aleatória, muita fase boa e até as partes chatas que fazem parte.</p>
+          <p>E quando eu penso mais longe — casa, casamento, família, vida adulta e tudo que ainda parece distante — eu consigo imaginar você ali. Não como uma frase bonita pra colocar num site, mas porque é realmente o futuro que eu gostaria de viver.</p>
+          <p>Quero que um dia a gente olhe essas fotos e pense: “caramba, a gente era muito novo aqui”. E que depois tenha outras mil pra olhar também.</p>
+          <p>Talvez um dia até alguém tenha que aguentar a gente contando pela centésima vez que tudo começou porque eu elogiei seu cabelo num story.</p>
+          <p class="letter-strong">Se eu pudesse voltar naquele começo, eu responderia de novo. Todas as vezes.</p>
+        </article>
+
+        <section class="ending-screen">
+          <div class="ending-image"><img src="08-abraco.jpeg" alt="Lavínia e Gustavo abraçados" loading="lazy"></div>
+          <p class="eyebrow">fim do jogo</p>
+          <h2>O resto a gente vive.</h2>
+          <p class="ending-note">com amor, do Gu pra Lala.</p>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <div class="lightbox is-hidden" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fechar">×</button>
+    <img id="lightboxImage" src="" alt="Foto ampliada do casal">
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
