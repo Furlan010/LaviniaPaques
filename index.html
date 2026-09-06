@@ -341,5 +341,68 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="app.js"></script>
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const campo = document.querySelector(
+    "#codigoFinal, #vaultCode, #finalCode, .final-vault input, .vault-card input"
+  );
+
+  const botao = document.querySelector(
+    "#abrirFinal, #unlockVault, #openFinal, .final-vault button, .vault-card button"
+  );
+
+  if (!campo || !botao) return;
+
+  campo.setAttribute("maxlength", "4");
+  campo.setAttribute("inputmode", "numeric");
+
+  campo.addEventListener("input", () => {
+    campo.value = campo.value.replace(/\D/g, "").slice(0, 4);
+  });
+
+  botao.disabled = false;
+
+  botao.addEventListener("click", () => {
+
+    const codigo = campo.value.replace(/\D/g, "");
+
+    if (codigo === "2025") {
+
+      const partesFinais = [
+        document.getElementById("final"),
+        document.getElementById("finalSection"),
+        document.getElementById("letterSection")
+      ];
+
+      partesFinais.forEach(el => {
+        if (el) {
+          el.hidden = false;
+          el.classList.remove("is-hidden");
+          el.style.display = "";
+        }
+      });
+
+      const destino =
+        document.getElementById("final") ||
+        document.getElementById("letterSection") ||
+        document.getElementById("finalSection");
+
+      if (destino) {
+        destino.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+    } else {
+      campo.value = "";
+      campo.focus();
+    }
+
+  });
+
+});
+</script> 
 </body>
 </html>
