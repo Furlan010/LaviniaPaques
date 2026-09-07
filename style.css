@@ -965,6 +965,126 @@ body {
   .bouquet-words { min-height: 530px; }
   .rep-lines { min-height: 250px; }
 }
+.bouquet-viewer-card {
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, rgba(74, 22, 35, 0.96), rgba(31, 10, 16, 0.98));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+}
+
+.bouquet-viewer-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.viewer-kicker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.72;
+}
+
+#bouquetViewTitle {
+  font-size: 1.05rem;
+}
+
+#bouquetViewHint {
+  opacity: 0.72;
+  font-size: 0.92rem;
+}
+
+.bouquet-viewer-stage {
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 10px;
+}
+
+.bouquet-viewer-frame {
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bouquet-viewer-frame img {
+  width: 100%;
+  height: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  display: block;
+  transition: transform .28s ease, opacity .28s ease;
+}
+
+.viewer-nav {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 999px;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.viewer-nav:hover {
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.14);
+}
+
+.bouquet-angle-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.angle-dot {
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 0.92rem;
+  transition: all .2s ease;
+}
+
+.angle-dot.is-active {
+  background: #c44768;
+  transform: translateY(-1px);
+}
+
+.bouquet-caption {
+  margin-top: 14px;
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.92;
+}
+
+@media (max-width: 640px) {
+  .bouquet-viewer-frame {
+    min-height: 280px;
+  }
+
+  .bouquet-viewer-stage {
+    grid-template-columns: 40px 1fr 40px;
+  }
+
+  .viewer-nav {
+    width: 40px;
+    height: 40px;
+  }
+
 
 @media (prefers-reduced-motion: reduce) {
   .thought, .heart-reveal path, .burst-heart { animation: none !important; }
