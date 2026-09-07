@@ -361,19 +361,67 @@
       </section>
 
       <section class="chapter bouquet-section" id="bouquet" data-chapter="7">
-        <div class="chapter-number">07</div>
-        <div class="bouquet-intro">
-          <div class="chapter-copy narrow">
-            <p class="eyebrow">uma lembrança que eu queria guardar aqui</p>
-            <h2>O seu buquê.</h2>
-            <p>Não um buquê qualquer. Esse aqui. O que eu escolhi, segurei na mão e fiquei imaginando sua reação antes de chegar em você.</p>
-          </div>
-          <button class="heart-reveal" id="heartReveal" type="button" aria-label="Tocar no coração">
-            <svg viewBox="0 0 120 110" aria-hidden="true">
-              <path d="M60 99C51 90 17 66 9 43C2 22 16 7 34 8C47 9 55 17 60 27C65 17 73 9 86 8C104 7 118 22 111 43C103 66 69 90 60 99Z"/>
-            </svg>
-            <span>toca aqui</span>
-          </button>
+  <div class="chapter-number">07</div>
+
+  <div class="bouquet-intro">
+    <div class="chapter-copy narrow">
+      <p class="eyebrow">um presente</p>
+      <h2>O buquê que eu te dei.</h2>
+      <p>
+        Eu não queria deixar essa parte só com foto solta.
+        Então coloquei o buquê aqui de um jeito que dá pra mexer e olhar melhor.
+      </p>
+    </div>
+  </div>
+
+  <div class="bouquet-viewer-card">
+    <div class="bouquet-viewer-top">
+      <span class="viewer-kicker">visualizar buquê</span>
+      <strong id="bouquetViewTitle">visão principal</strong>
+      <small id="bouquetViewHint">arrasta pro lado ou usa os botões</small>
+    </div>
+
+    <div class="bouquet-viewer-stage" id="bouquetViewerStage">
+      <button class="viewer-nav prev" id="bouquetPrev" type="button" aria-label="Ver ângulo anterior">‹</button>
+
+      <div class="bouquet-viewer-frame">
+        <img
+          id="bouquetViewerImage"
+          src="bouquet-original.jpeg"
+          alt="Buquê dado para Lavínia"
+          loading="lazy"
+        />
+      </div>
+
+      <button class="viewer-nav next" id="bouquetNext" type="button" aria-label="Ver próximo ângulo">›</button>
+    </div>
+
+    <div class="bouquet-angle-dots" id="bouquetAngleDots" aria-label="Ângulos do buquê">
+      <button class="angle-dot is-active" type="button" data-index="0">mão</button>
+      <button class="angle-dot" type="button" data-index="1">story</button>
+      <button class="angle-dot" type="button" data-index="2">de cima</button>
+    </div>
+
+    <p class="bouquet-caption" id="bouquetViewerCaption">
+      foi assim que ele tava na minha mão antes de chegar em você
+    </p>
+  </div>
+
+  <div class="bouquet-words">
+    <p>
+      Eu lembro de ficar pensando se você ia gostar, se ia te surpreender e como ia ser sua reação.
+    </p>
+    <p>
+      No fim, virou uma daquelas coisas simples que ficam marcadas.
+    </p>
+    <p>
+      E eu quis deixar isso aqui também, porque não foi “só um buquê”.
+      Foi eu tentando te entregar, em flores, um pouco do que eu sinto.
+    </p>
+  </div>
+
+  <a class="next-link" href="#vault">agora falta a última parte ↓</a>
+</section>
         </div>
 
         <div class="heart-message is-hidden" id="heartMessage">
