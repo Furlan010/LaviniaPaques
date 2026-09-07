@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#641b32" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="Uma surpresa feita para Lavínia." />
+  <title>Lavínia — nossa história</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&family=Parisienne&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+  <canvas id="ambient" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="heart-burst-layer" id="heartBurstLayer" aria-hidden="true"></div>
+
+  <button class="music-control is-hidden" id="musicControl" type="button" aria-label="Tocar nossa música">
+    <span class="music-dot"></span>
+    <span class="music-label">♪ nossa música</span>
+  </button>
+  <audio id="bgMusic" preload="none" loop src="nossa-musica.mp3"></audio>
+
+  <main>
+    <section class="screen intro-screen" id="intro">
+      <div class="intro-orbit" aria-hidden="true"></div>
+      <div class="intro-copy reveal-seq">
+        <p class="eyebrow">uma coisa que eu fiz só pra você</p>
+        <h1>Lavínia.</h1>
+        <p class="intro-line">tem umas coisas que eu não consigo falar direito de uma vez.</p>
+        <p class="intro-line">então eu resolvi transformar tudo isso em um lugar nosso.</p>
+        <button class="primary-btn" id="startBtn" type="button">abrir surpresa</button>
+      </div>
+      <div class="intro-footer">
+        <span>2025 → agora</span>
+        <span>feito pelo Gu</span>
+      </div>
+    </section>
+
+    <section class="screen gate-screen is-hidden" id="gate">
+      <div class="gate-shell">
+        <button class="ghost-back" id="backToIntro" type="button">← voltar</button>
+        <p class="eyebrow">antes de começar</p>
+        <h2>Tem uma coisinha que só você vai saber.</h2>
+        <p class="muted">Não é prova, não é investigação KKK. É só o jeito certo de entrar.</p>
+
+        <div class="password-card">
+          <div class="password-slots" id="passwordSlots" aria-hidden="true"></div>
+          <label class="field-label" for="passwordInput">senha</label>
+          <div class="input-row">
+            <input id="passwordInput" class="text-input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="digita aqui" />
+            <button class="mini-btn" id="submitPassword" type="button">entrar</button>
+          </div>
+          <p class="feedback" id="passwordFeedback" aria-live="polite"></p>
+        </div>
+
+        <div class="hint-panel">
+          <div class="hint-head">
+            <span>dicas</span>
+            <span id="hintCount">0/3</span>
+          </div>
+          <div class="hint-list" id="hintList"></div>
+          <button class="secondary-btn" id="hintBtn" type="button">me ajuda um pouquinho</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="experience" class="experience is-hidden">
+      <header class="progress-header">
+        <a href="#story" class="brand-mini" aria-label="Voltar ao início da história">L.</a>
+        <div class="progress-track"><span id="progressBar"></span></div>
+        <div class="header-right"><span class="fragment-mini"><b id="fragmentCount">0</b>/4 segredos</span><span class="chapter-indicator" id="chapterIndicator">01 / 10</span></div>
+      </header>
+
+      <section class="chapter story-opening" id="story" data-chapter="1">
+        <div class="chapter-number">01</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">onde tudo começou</p>
+          <h2>Antes de virar rotina, teve uma mensagem.</h2>
+          <p>Uma resposta num story. Coisa simples. Dessas que você manda sem imaginar que vai lembrar por muito tempo.</p>
+        </div>
+
+        <div class="thought-cloud" aria-hidden="true">
+          <div class="thought thought-left">ainda bem que eu mandei aquela mensagem.</div>
+          <div class="thought thought-right">era só um story... pelo menos eu achava.</div>
+        </div>
+
+        <div class="envelope-wrap">
+          <button class="envelope" id="openEnvelope" type="button" aria-label="Abrir a primeira carta">
+            <span class="envelope-back"></span>
+            <span class="envelope-letter">
+              <small>minha primeira carta</small>
+              <strong>abre aqui</strong>
+            </span>
+            <span class="envelope-flap"></span>
+            <span class="envelope-front"></span>
+          </button>
+          <p class="microcopy">toca no envelope</p>
+        </div>
+
+        <div class="paper-letter is-hidden" id="storyLetter">
+          <p class="paper-date">2025</p>
+          <p>Eu lembro que respondi um story seu por causa de uma coisa que até hoje continua chamando minha atenção.</p>
+          <p class="paper-question">qual detalhe me fez responder?</p>
+          <div class="choice-pills" data-question="hair">
+            <button class="choice" data-answer="sorriso" type="button">sorriso</button>
+            <button class="choice" data-answer="olhos" type="button">olhos</button>
+            <button class="choice" data-answer="cabelo" type="button">cabelo</button>
+            <button class="choice" data-answer="look" type="button">look</button>
+          </div>
+          <p class="feedback" id="hairFeedback"></p>
+        </div>
+
+        <div class="story-after is-hidden" id="storyAfter">
+          <div class="quote-stage">
+            <span class="quote-mark">“</span>
+            <p>Naquele dia era só um elogio. Hoje eu sei que foi uma daquelas pequenas decisões que acabam abrindo uma história inteira.</p>
+          </div>
+          <div class="photo-stack" aria-label="Fotos do casal">
+            <figure class="polaroid p1"><img src="04-colo.jpeg" alt="Lavínia e Gustavo juntos"><figcaption>o começo</figcaption></figure>
+            <figure class="polaroid p2"><img src="02-azul.jpeg" alt="Lavínia e Gustavo juntos"><figcaption>virou conversa</figcaption></figure>
+            <figure class="polaroid p3"><img src="02-azul.jpeg" alt="Lavínia e Gustavo juntos"><figcaption>e depois virou nós</figcaption></figure>
+          </div>
+
+          <div class="tiny-note-section">
+            <div class="tiny-note-head">
+              <span>3 bilhetinhos escondidos</span>
+              <small>abre quando quiser</small>
+            </div>
+            <div class="tiny-note-grid" id="tinyNotes">
+              <button class="tiny-note" type="button" data-note="1"><span>01</span><b>sobre você</b><p>Eu gosto do jeito que você consegue deixar um dia comum com cara de memória.</p></button>
+              <button class="tiny-note" type="button" data-note="2"><span>02</span><b>sobre nós</b><p>O que eu mais gosto na gente é que a história não parece pronta. Ela continua acontecendo.</p></button>
+              <button class="tiny-note" type="button" data-note="3"><span>03</span><b>sobre mim</b><p>Você me fez levar mais a sério o tipo de pessoa que eu quero ser.</p></button>
+            </div>
+            <p class="tiny-note-progress" id="tinyNoteProgress">0/3 abertos</p>
+          </div>
+          <a class="next-link" href="#etec-first">continua ↓</a>
+        </div>
+      </section>
+
+      <section class="chapter etec-first" id="etec-first" data-chapter="2">
+        <div class="chapter-number">02</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">antes da primeira saída</p>
+          <h2>A ETEC já tinha colocado a gente no mesmo caminho.</h2>
+          <p>Foi ali que a gente começou a se ver de verdade. Ainda tinha nervosismo, ainda tinha aquela sensação de “meu Deus, ela tá aqui”, mas aos poucos deixou de ser só conversa de celular.</p>
+        </div>
+
+        <div class="thought-cloud thought-cloud-etec" aria-hidden="true">
+          <div class="thought thought-right">eu pensava no que ia falar quando te visse. na hora esquecia metade.</div>
+          <div class="thought thought-left">a escola foi deixando de ser só escola.</div>
+        </div>
+
+        <div class="place-card">
+          <div class="place-pin" aria-hidden="true"><span></span></div>
+          <div>
+            <span class="place-label">ETEC</span>
+            <strong>o lugar onde a gente começou a se encontrar na vida real.</strong>
+            <p>Não foi nossa primeira saída. Foi o cenário em que a história começou a ganhar presença.</p>
+          </div>
+        </div>
+
+        <div class="hold-note">
+          <p class="eyebrow">segura pra abrir</p>
+          <button id="holdButton" class="hold-button" type="button" aria-label="Segure para revelar uma mensagem">
+            <span class="hold-progress" id="holdProgress"></span>
+            <span class="hold-text">segura aqui</span>
+          </button>
+          <div class="hold-reveal is-hidden" id="holdReveal">
+            <p>Uma coisa que eu gosto nessa parte é perceber que a gente foi deixando de ser “duas pessoas conversando” e começou a virar parte do dia um do outro.</p>
+          </div>
+        </div>
+
+        <div class="constellation-card">
+          <div class="constellation-copy">
+            <span class="eyebrow">uma pausa besta</span>
+            <h3>acende os pontinhos.</h3>
+            <p>não tem resposta certa. é só pra você mexer em alguma coisa enquanto eu continuo sendo sentimental.</p>
+          </div>
+          <div class="constellation" id="constellation" aria-label="Mini jogo de acender pontos">
+            <button class="star-dot s1" type="button" aria-label="Ponto 1"></button>
+            <button class="star-dot s2" type="button" aria-label="Ponto 2"></button>
+            <button class="star-dot s3" type="button" aria-label="Ponto 3"></button>
+            <button class="star-dot s4" type="button" aria-label="Ponto 4"></button>
+            <button class="star-dot s5" type="button" aria-label="Ponto 5"></button>
+            <svg viewBox="0 0 100 55" preserveAspectRatio="none" aria-hidden="true"><polyline id="starLine" points="12,38 31,14 50,32 69,9 87,36"/></svg>
+          </div>
+          <p class="constellation-result is-hidden" id="constellationResult">pronto. no fim, um monte de pontinho solto também pode virar desenho.</p>
+        </div>
+
+        <a class="next-link" href="#shopping">e aí veio a nossa primeira saída ↓</a>
+      </section>
+
+      <section class="chapter shopping-section" id="shopping" data-chapter="3">
+        <div class="chapter-number">03</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">nossa primeira saída juntos</p>
+          <h2>O shopping.</h2>
+          <p>Não foi a primeira vez que a gente se viu. Foi a primeira vez que a gente realmente saiu junto — e eu lembro do nervosismo como se fosse ontem.</p>
+        </div>
+
+        <div class="thought-cloud" aria-hidden="true">
+          <div class="thought thought-left">a gente já se via. mas sair juntos era outra coisa.</div>
+          <div class="thought thought-right">eu tava tentando parecer normal. não tava dando muito certo KKK.</div>
+        </div>
+
+        <div class="cinema-photo">
+          <img src="03-espelho.jpeg" alt="Lavínia e Gustavo no shopping" loading="lazy">
+          <div class="cinema-overlay"></div>
+          <div class="cinema-caption">
+            <span>primeira saída juntos</span>
+            <strong>nós dois tentando agir normal</strong>
+          </div>
+        </div>
+
+        <div class="scrub-card">
+          <div class="scrub-copy">
+            <span>arrasta</span>
+            <strong>daquele nervoso → pra rotina</strong>
+          </div>
+          <input id="memoryScrub" class="scrub-range" type="range" min="0" max="100" value="8" aria-label="Revelar mensagem" />
+          <div class="scrub-message" id="scrubMessage">
+            <span>naquele dia eu só queria que desse tudo certo.</span>
+            <strong>hoje eu só acho muito doido que te ver tenha virado uma parte tão normal e tão importante do meu dia.</strong>
+          </div>
+        </div>
+
+        <div class="reason-machine">
+          <div class="reason-machine-top">
+            <span>gerador completamente científico</span>
+            <b>por que eu gosto tanto da gente?</b>
+          </div>
+          <p class="reason-output" id="reasonText">porque até o nervosismo do começo virou uma lembrança boa.</p>
+          <button class="secondary-btn compact" id="reasonButton" type="button">me dá outro motivo</button>
+        </div>
+
+        <a class="next-link" href="#choice">depois veio uma escolha que mudou tudo ↓</a>
+      </section>
+
+      <section class="chapter choice-section" id="choice" data-chapter="4">
+        <div class="chapter-number">04</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">a escolha</p>
+          <h2>Entrar na ETEC parecia uma decisão de escola.</h2>
+          <p>Mas quando eu consegui entrar de vez, a escola virou muito mais que escola pra mim.</p>
+        </div>
+
+        <div class="result-card" id="resultCard">
+          <div class="result-header"><span>processo seletivo</span><b>ETEC</b></div>
+          <div class="result-content">
+            <div class="result-row"><span>inscrição</span><b>confirmada</b></div>
+            <div class="result-row"><span>resultado</span><b id="resultStatus">toque para abrir</b></div>
+            <button class="result-seal" id="revealResult" type="button">
+              <span>última chamada</span>
+              <strong>ver resultado</strong>
+            </button>
+          </div>
+        </div>
+
+        <div class="choice-reveal is-hidden" id="choiceReveal">
+          <div class="approved-stamp">APROVADO</div>
+          <div class="story-lines">
+            <p>Passar na última chamada já parecia sorte demais.</p>
+            <p>Depois eu percebi a melhor parte: eu ia poder te ver muito mais, conviver com você, viver os dias comuns perto de você.</p>
+            <p>E foi exatamente nesses dias comuns que a gente ficou mais próximo. O relacionamento deu um pulo sem a gente nem perceber.</p>
+          </div>
+          <figure class="editorial-photo"><img src="05-espelho-repetida.jpeg" alt="Lavínia e Gustavo juntos"><figcaption>quando “te ver” começou a virar “te ter por perto”.</figcaption></figure>
+        </div>
+
+        <a class="next-link" href="#better">tem uma parte disso que eu nunca quero esquecer ↓</a>
+      </section>
+
+      <section class="chapter better-section" id="better" data-chapter="5">
+        <div class="chapter-number">05</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">o que você mudou em mim</p>
+          <h2>Você me fez querer ser um mlk melhor.</h2>
+          <p>Não porque você me pediu pra virar outra pessoa. Mas porque estar com você me fez olhar mais pra mim mesmo.</p>
+        </div>
+
+        <div class="thought-cloud thought-cloud-better" aria-hidden="true">
+          <div class="thought thought-left">eu gosto do mlk que eu tô tentando me tornar com você.</div>
+          <div class="thought thought-right">não é sobre ser perfeito. é sobre continuar melhorando.</div>
+        </div>
+
+        <div class="better-cards" id="betterCards">
+          <button class="better-card" type="button">
+            <span>01</span><strong>pensar mais antes de agir</strong>
+            <p>Eu comecei a perceber que minhas escolhas não mexem só comigo quando existe um “nós”.</p>
+          </button>
+          <button class="better-card" type="button">
+            <span>02</span><strong>tentar corrigir o que eu erro</strong>
+            <p>Eu ainda erro, claro. Mas hoje eu quero entender, consertar e não repetir só por orgulho.</p>
+          </button>
+          <button class="better-card" type="button">
+            <span>03</span><strong>cuidar do relacionamento de verdade</strong>
+            <p>Pra mim não é só gostar. É aprender a conversar, ter paciência e escolher cuidar do que a gente tem.</p>
+          </button>
+          <button class="better-card" type="button">
+            <span>04</span><strong>querer construir</strong>
+            <p>Hoje eu penso mais no futuro e em como eu posso ser alguém melhor pra viver esse futuro com você.</p>
+          </button>
+        </div>
+
+        <div class="thank-you-card">
+          <span class="script-word">obrigado.</span>
+          <p>Obrigado por, sem nem perceber, ter me dado vontade de melhorar coisas em mim que antes eu deixava pra depois.</p>
+          <p>Hoje, muita coisa que eu tento mudar, aprender ou fazer melhor tem um motivo simples no meio: eu quero que a gente fique bem. Quero cuidar do nosso relacionamento e continuar melhorando, um pouco por dia.</p>
+          <p class="thank-strong">Eu não quero ser perfeito pra você. Quero ser alguém que continua tentando ser melhor por nós dois.</p>
+        </div>
+
+        <div class="scratch-section">
+          <div class="scratch-copy">
+            <span class="eyebrow">tem uma frase escondida</span>
+            <h3>raspa com o dedo.</h3>
+          </div>
+          <div class="scratch-card" id="scratchCard">
+            <div class="scratch-message">
+              <small>uma coisa que eu quero que você saiba</small>
+              <strong>você me faz querer viver isso do jeito certo.</strong>
+              <span>não perfeito. certo: com cuidado, conversa e vontade de melhorar.</span>
+            </div>
+            <canvas id="scratchCanvas" aria-label="Raspe para revelar a mensagem"></canvas>
+          </div>
+          <p class="scratch-hint" id="scratchHint">arrasta o dedo até revelar a frase</p>
+        </div>
+
+        <a class="next-link" href="#dedication">tem uma parte que até aparece no meio do treino ↓</a>
+      </section>
+
+      <section class="chapter dedication-section" id="dedication" data-chapter="6">
+        <div class="chapter-number">06</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">mais um motivo</p>
+          <h2>Você aparece até onde nem tá.</h2>
+          <p>Não é sobre passar do limite. É sobre aqueles momentos em que eu penso em desistir de alguma coisa e lembro que hoje eu tenho mais motivos pra continuar tentando.</p>
+        </div>
+
+        <div class="rep-stage" id="repStage">
+          <div class="rep-counter"><span id="repCurrent">01</span><small>/ 05</small></div>
+          <div class="rep-lines">
+            <p class="rep-line is-active" data-rep="1">cada repetição a mais.</p>
+            <p class="rep-line" data-rep="2">cada vez que eu escolho não desistir.</p>
+            <p class="rep-line" data-rep="3">cada coisa que exige disciplina...</p>
+            <p class="rep-line rep-emphasis" data-rep="4">tem um pouco de você nisso.</p>
+            <p class="rep-line rep-small" data-rep="5">tem coisa que eu faço por mim. tem dia que eu faço por nós. e tem dia que eu faço por você mesmo KKK.</p>
+          </div>
+          <button class="rep-button" id="repButton" type="button">mais uma →</button>
+        </div>
+
+        <div class="thought-cloud thought-cloud-gym" aria-hidden="true">
+          <div class="thought thought-left">às vezes nem é por mim KKK.</div>
+          <div class="thought thought-right">você virou um motivo a mais pra eu não largar as coisas pela metade.</div>
+        </div>
+
+        <a class="next-link" href="#bouquet">e teve um dia que eu tentei transformar sentimento em presente ↓</a>
+      </section>
+
+      <section class="chapter bouquet-section" id="bouquet" data-chapter="7">
+        <div class="chapter-number">07</div>
+        <div class="bouquet-intro">
+          <div class="chapter-copy narrow">
+            <p class="eyebrow">uma lembrança que eu queria guardar aqui</p>
+            <h2>O seu buquê.</h2>
+            <p>Não um buquê qualquer. Esse aqui. O que eu escolhi, segurei na mão e fiquei imaginando sua reação antes de chegar em você.</p>
+          </div>
+          <button class="heart-reveal" id="heartReveal" type="button" aria-label="Tocar no coração">
+            <svg viewBox="0 0 120 110" aria-hidden="true">
+              <path d="M60 99C51 90 17 66 9 43C2 22 16 7 34 8C47 9 55 17 60 27C65 17 73 9 86 8C104 7 118 22 111 43C103 66 69 90 60 99Z"/>
+            </svg>
+            <span>toca aqui</span>
+          </button>
+        </div>
+
+        <div class="heart-message is-hidden" id="heartMessage">
+          <span class="script-word">foi pra você.</span>
+          <p>Eu gosto de lembrar disso porque não era só sobre entregar flores. Era sobre tentar colocar numa coisa de verdade um pouco do que eu sentia e não sabia explicar direito.</p>
+        </div>
+
+        <div class="bouquet-showcase">
+          <button class="bouquet-main" id="bouquetMainButton" type="button" aria-label="Abrir foto do buquê">
+            <img id="bouquetMain" src="" data-bouquet-key="original" alt="O buquê de rosas vermelhas que Gustavo deu para Lavínia">
+            <span class="bouquet-main-caption"><b id="bouquetCaption">na minha mão, antes de chegar em você</b><small>toca nas fotos menores</small></span>
+          </button>
+
+          <div class="bouquet-thumbs" role="group" aria-label="Fotos do buquê">
+            <button class="bouquet-thumb is-selected" data-bouquet-key="original" data-caption="na minha mão, antes de chegar em você" type="button"><img src="" alt="Buquê original"></button>
+            <button class="bouquet-thumb" data-bouquet-key="story" data-caption="quando eu vi isso no seu story, eu sorri igual bobo" type="button"><img src="" alt="Buquê publicado no story"></button>
+            <button class="bouquet-thumb" data-bouquet-key="collage" data-caption="e depois ele virou mais uma lembrança nossa" type="button"><img src="" alt="Montagem com fotos do buquê"></button>
+          </div>
+        </div>
+
+        <div class="bouquet-words">
+          <div class="thought thought-left">eu queria te dar alguma coisa bonita.</div>
+          <div class="thought thought-right">mas o que eu mais queria era ver você feliz quando recebesse.</div>
+          <div class="thought thought-center">se um dia as flores acabarem, a lembrança fica aqui.</div>
+        </div>
+
+        <a class="next-link dark-link" href="#gallery">agora volta pras nossas fotos ↓</a>
+      </section>
+
+      <section class="chapter gallery-section" id="gallery" data-chapter="8">
+        <div class="chapter-number">08</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">um monte de “dias normais”</p>
+          <h2>Eu queria guardar todas.</h2>
+          <p>Não só as mais bonitas. As nossas. Porque tem foto que parece qualquer coisa até virar uma lembrança que você não quer perder.</p>
+        </div>
+
+        <div class="film-strip" id="filmStrip" aria-label="Galeria de fotos do casal">
+          <button class="film-frame" data-full="01-fullsize.jpeg" type="button"><img src="01-fullsize.jpeg" alt="Lavínia e Gustavo juntos"><span>um dia qualquer que ficou importante</span></button>
+          <button class="film-frame" data-full="04-colo.jpeg" type="button"><img src="04-colo.jpeg" alt="Lavínia e Gustavo juntos"><span>quando ficar perto já parecia natural</span></button>
+          <button class="film-frame" data-full="02-azul.jpeg" type="button"><img src="02-azul.jpeg" alt="Lavínia e Gustavo juntos"><span>algumas fotos têm muito a nossa cara</span></button>
+          <button class="film-frame" data-full="05-espelho-repetida.jpeg" type="button"><img src="05-espelho-repetida.jpeg" alt="Lavínia e Gustavo juntos"><span>e algumas eu só gosto porque é você ali</span></button>
+          <button class="film-frame" data-full="03-espelho.jpeg" type="button"><img src="03-espelho.jpeg" alt="Lavínia e Gustavo juntos"><span>até as repetidas merecem ficar</span></button>
+          <button class="film-frame" data-full="03-espelho.jpeg" type="button"><img src="03-espelho.jpeg" alt="Lavínia e Gustavo no shopping"><span>nossa primeira saída juntos</span></button>
+          <button class="film-frame" data-full="03-espelho.jpeg" type="button"><img src="03-espelho.jpeg" alt="Lavínia e Gustavo no elevador"><span>foto rápida, memória pra muito tempo</span></button>
+          <button class="film-frame" data-full="05-espelho-repetida.jpeg" type="button"><img src="05-espelho-repetida.jpeg" alt="Lavínia e Gustavo juntos"><span>meu tipo favorito de proximidade</span></button>
+          <button class="film-frame" data-full="04-colo.jpeg" type="button"><img src="04-colo.jpeg" alt="Selfie de Lavínia e Gustavo"><span>você por perto melhora o cenário</span></button>
+          <button class="film-frame" data-full="02-azul.jpeg" type="button"><img src="02-azul.jpeg" alt="Selfie de Lavínia e Gustavo"><span>ainda quero encher isso aqui de foto nova</span></button>
+        </div>
+
+        <div class="gallery-prompt">
+          <p>desliza pro lado. toca numa foto se quiser ver inteira.</p>
+        </div>
+
+        <div class="photo-feature">
+          <img src="05-espelho-repetida.jpeg" alt="Lavínia e Gustavo juntos">
+          <div class="photo-feature-copy">
+            <span>uma coisa simples</span>
+            <h3>Eu gosto de quem eu sou quando tô construindo algo com você.</h3>
+          </div>
+        </div>
+
+        <a class="next-link" href="#bonus">pra não ficar tudo sentimental… ↓</a>
+      </section>
+
+      <section class="chapter bonus-section" id="bonus" data-chapter="9">
+        <div class="chapter-number">09</div>
+        <div class="chapter-copy narrow">
+          <p class="eyebrow">bônus</p>
+          <h2>Agora sim: um joguinho que funciona.</h2>
+          <p>As cartas aparecem por um segundo. Depois tenta achar os pares. Se cansar, dá pra embaralhar e começar de novo.</p>
+        </div>
+
+        <div class="memory-toolbar">
+          <span id="memoryStatus">preparando…</span>
+          <button class="secondary-btn compact" id="restartMemory" type="button">embaralhar</button>
+        </div>
+        <div class="memory-grid" id="memoryGrid" aria-label="Jogo da memória"></div>
+        <p class="feedback memory-feedback" id="memoryFeedback"></p>
+
+        <div class="bonus-complete is-hidden" id="bonusComplete">
+          <div class="soft-confetti" aria-hidden="true"></div>
+          <p>boa KKK. agora juntou o último segredo.</p>
+        </div>
+
+        <div class="final-vault" id="finalVault">
+          <p class="eyebrow">última trava</p>
+          <h3>Você já encontrou o código.</h3>
+          <div class="vault-slots" id="vaultSlots">
+            <span>?</span><span>?</span><span>?</span><span>?</span>
+          </div>
+          <p class="vault-copy" id="vaultCopy">os quatro fragmentos vão formando a senha.</p>
+          <div class="final-code-row">
+            <input id="finalCodeInput" class="text-input final-code-input" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••" aria-label="Código final de quatro números" />
+            <button class="primary-btn" id="openFinal" type="button">abrir a última carta</button>
+          </div>
+          <p class="feedback" id="finalCodeFeedback" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="chapter final-section is-hidden" id="final" data-chapter="10">
+        <div class="final-hero">
+          <img src="04-colo.jpeg" alt="Lavínia e Gustavo juntos">
+          <div class="final-hero-shade"></div>
+          <div class="final-hero-copy">
+            <span class="eyebrow">agora sem jogo</span>
+            <h2>Pra você.</h2>
+          </div>
+        </div>
+
+        <article class="final-letter">
+          <p>É muito doido pensar que tudo isso começou de um jeito tão simples. Uma resposta, algumas conversas, a gente se vendo na ETEC, o nervosismo da primeira saída no shopping… e de repente já existia uma história que eu realmente queria cuidar.</p>
+          <p>Você entrou na minha vida de um jeito que mudou mais coisa em mim do que talvez você perceba.</p>
+          <p>Eu comecei a pensar mais no que faço, no que falo, no jeito que resolvo as coisas e no tipo de pessoa que eu quero ser. Não porque eu quero parecer melhor. É porque eu quero conseguir cuidar melhor do que a gente tem.</p>
+          <p>Hoje, quando eu tento melhorar alguma coisa em mim, quase sempre tem um “nós” no meio. Às vezes aparece estudando, às vezes treinando, às vezes numa decisão pequena do dia. Não porque eu deixei de fazer as coisas por mim, mas porque pensar em você virou mais um motivo pra eu não largar tudo pela metade.</p>
+          <p>Eu sei que eu ainda tenho muita coisa pra aprender. Ainda vou errar, ainda vou ter dia que vou entender as coisas tarde demais. Mas eu quero que você saiba que eu tento. E quero continuar tentando todos os dias ser um cara melhor pra você e também pra mim.</p>
+          <p>Obrigado por fazer parte dessa mudança. Obrigado pelos dias bons, pelos dias normais, pelas conversas, pelas risadas e até pelas partes que fazem a gente amadurecer. E obrigado por transformar até um buquê de rosas, que um dia tava na minha mão, em uma memória que eu quis colocar aqui.</p>
+          <p>Quando eu penso no futuro, eu não penso só em uma versão perfeita e bonita das coisas. Eu penso na vida de verdade. Escola acabando, responsabilidades, trabalho, fases novas, problemas, conquistas, casa, família, um monte de coisa que ainda nem existe.</p>
+          <p>E mesmo assim, quando eu imagino esse futuro, eu ainda gosto da ideia de você estar nele.</p>
+          <p class="final-strong">Eu quero continuar construindo um “nós” que fique cada vez melhor — não só bonito num site, mas bom de viver de verdade.</p>
+        </article>
+
+        <div class="future-strip">
+          <div><span>agora</span><strong>mais histórias</strong></div>
+          <div><span>depois</span><strong>mais fotos</strong></div>
+          <div><span>um dia</span><strong>olhar pra trás e ter orgulho</strong></div>
+        </div>
+
+        <section class="ending-screen">
+          <div class="ending-image"><img src="05-espelho-repetida.jpeg" alt="Lavínia e Gustavo juntos"></div>
+          <p class="eyebrow">fim do site</p>
+          <h2>Mas eu ainda quero muita coisa pra colocar aqui depois.</h2>
+          <p class="ending-note">do Gu pra Lala ♡</p>
+          <button class="secondary-btn" id="replayBtn" type="button">ver de novo</button>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <div class="lightbox is-hidden" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fechar">×</button>
+    <img id="lightboxImage" src="" alt="Foto ampliada do casal">
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
