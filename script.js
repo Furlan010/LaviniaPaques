@@ -822,6 +822,90 @@
     }, { threshold: .12, rootMargin: '0px 0px -7% 0px' });
     revealTargets.forEach(el => contentObserver.observe(el));
   }
+  // -------- bouquet viewer / pseudo 360 --------
+(function () {
+  const viewerImage = document.getElementById('bouquetViewerImage');
+  const viewerCaption = document.getElementById('bouquetViewerCaption');
+  const viewerTitle = document.getElementById('bouquetViewTitle');
+  const dotsWrap = document.getElementById('bouquetAngleDots');
+  const prevBtn = document.getElementById('bouquetPrev');
+  const nextBtn = document.getElementById('bouquetNext');
+  const stage = document.getElementById('bouquetViewerStage');
+
+  if (!viewerImage || !viewerCaption || !viewerTitle || !dotsWrap || !prevBtn || !nextBtn || !stage) return;
+
+  const bouquetViews = [
+    {
+      src: 'bouquet-original.jpeg',
+      title: 'visão principal',
+      caption: 'foi assim que ele tava na minha mão antes de chegar em você'
+    },
+    {
+      src: 'bouquet-story.jpeg',
+      title: 'ângulo do story',
+      caption: 'quando apareceu no seu story eu fiquei com aquele sorrisinho de besta'
+    },
+    {
+      src: 'bouquet-collage.jpeg',
+      title: 'visão de cima',
+      caption: 'e aqui dá pra ver melhor o buquê e os detalhes dele'
+    }
+  ];
+
+  let currentBouquetView = 0;
+
+  function renderBouquetView(index) {
+    currentBouquetView = (index + bouquetViews.length) % bouquetViews.length;
+
+    const item = bouquetViews[currentBouquetView];
+    viewerImage.style.opacity = '0.25';
+    viewerImage.style.transform = 'scale(0.985)';
+
+    setTimeout(() => {
+      viewerImage.src = item.src;
+      viewerImage.alt = item.title;
+      viewerTitle.textContent = item.title;
+      viewerCaption.textContent = item.caption;
+      viewerImage.style.opacity = '1';
+      viewerImage.style.transform = 'scale(1)';
+    }, 120);
+
+    [...dotsWrap.querySelectorAll('.angle-dot')].forEach((btn, i) => {
+      btn.classList.toggle('is-active', i === currentBouquetView);
+    });
+  }
+
+  prevBtn.addEventListener('click', () => renderBouquetView(currentBouquetView - 1));
+  nextBtn.addEventListener('click', () => renderBouquetView(currentBouquetView + 1));
+
+  dotsWrap.addEventListener('click', (e) => {
+    const btn = e.target.closest('.angle-dot');
+    if (!btn) return;
+    renderBouquetView(Number(btn.dataset.index));
+  });
+
+  let startX = 0;
+  let endX = 0;
+
+  stage.addEventListener('touchstart', (e) => {
+    startX = e.changedTouches[0].clientX;
+  }, { passive: true });
+
+  stage.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    const diff = endX - startX;
+
+    if (Math.abs(diff) < 30) return;
+
+    if (diff < 0) {
+      renderBouquetView(currentBouquetView + 1);
+    } else {
+      renderBouquetView(currentBouquetView - 1);
+    }
+  }, { passive: true });
+
+  renderBouquetView(0);
+})();
 
   // ---------- tiny easter egg ----------
   let logoTaps = 0;
